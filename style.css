@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: lightslategray;
+}
+.options{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+    height: 50px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    letter-spacing: 2px;
+}
+.board{
+    display: flex;
+    justify-content:center ;
+    margin: 0 auto;
+}
+.cell{
+    width: 22px;
+    height: 22px;
+    background-color: lightgray;
+    border: none;
+}
+.snake{
+    background-color: darkgreen;
+    border-radius: 8px;
+}
+.food{
+    
+    background-color: orangered;
+}
+.block{
+    background-color: lightslategray;
+}
+button{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 44px;
+    width: 200px;
+    height: 200px;
+    background-color: darkgrey;
+    border-radius: 10px;
+    border: 2px solid grey;
+    color: orangered;
+    text-transform: uppercase;
+}
