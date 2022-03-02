@@ -7,13 +7,14 @@ var i, j, k,                                    //циклы                    
     food = '', foodSpeed = 25, noFood = 1,     //корм
     foodPosition,
     direction = 'up',                           //направление
-    blockPosition = '0_0';                      //препятствия
+    blockPosition = '0_0',                       //препятствия
+    movingInterval, createFoodInterval,         //интервал
+    snakeCheckInterval, createInterval
 
 function snakeCheck(){
-    (document.getElementById(snake[0]).className == 'cell snake snake' || 
-    document.getElementById(snake[0]).className == 'block snake') ? game = 0 : false;
-    switch (game){
-        case 0: board.innerHTML = '<button onclick=refresh()> Играть еще';break;
+    if (document.getElementById(snake[0]).className == 'cell snake snake' || 
+    document.getElementById(snake[0]).className == 'block snake') {
+        gameOver()
     }
 }
 function refresh(){
@@ -96,10 +97,10 @@ function start(){                                                               
     snake.push((snakePosY + 1) + '_' + snakePosX);
     document.getElementById(snake[0]).className += ' snake';
     document.getElementById(snake[1]).className += ' snake';
-    setInterval(moving, snakeSpeed);
-    setInterval(createFood, foodSpeed);
-    setInterval(snakeCheck, 100);
-    setInterval(createBlock, 5000);
+    movingInterval = setInterval(moving, snakeSpeed);
+    createFoodInterval = setInterval(createFood, foodSpeed);
+    snakeCheckInterval = setInterval(snakeCheck, 100);
+    createInterval = setInterval(createBlock, 5000);
     addEventListener('keydown', moveRules);                                                      //задание управления
 }
 
@@ -121,4 +122,18 @@ function init(){
     start();
 }
 
+function gameOver() {
+    clearInterval(movingInterval)
+    clearInterval(createFoodInterval)
+    clearInterval(snakeCheckInterval)
+    clearInterval(createInterval)
+    game = 0
+    playAgainButton = document.createElement('button')
+    playAgainButton.innerHTML = 'Играть еще'
+    playAgainButton.onclick = refresh
+    document.querySelector('.options').innerHTML = ''
+    document.querySelector('.board').innerHTML = ''
+    document.querySelector('body').appendChild(playAgainButton)
+    document.querySelector('body').style.margin = 'auto'
+}
 window.onload = init();                                                                          //инициализация
